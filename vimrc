@@ -38,7 +38,7 @@ call plug#end()
 set encoding=utf-8
 set hidden                      " Required by coc for multi-file edits (rename, etc.)
 set mouse=a
-set clipboard=unnamedplus
+set clipboard^=unnamed,unnamedplus " * on macOS, + on Linux; WSL is handled below
 set updatetime=300              " Faster CursorHold (coc, gitgutter, checktime)
 set shortmess+=c                " Suppress completion-menu messages
 
@@ -93,7 +93,7 @@ let g:gruvbox_italic = 1
 let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_contrast_light = 'hard'
 set background=light
-colorscheme gruvbox
+silent! colorscheme gruvbox " not installed yet during the first headless PlugInstall
 
 " ----------------------------------------------------------------------------
 " Plugin settings
@@ -216,6 +216,15 @@ augroup vimrc_filetype
   autocmd FileType go,make setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=0
   " PEP 8
   autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4
+augroup END
+
+augroup vimrc_wsl_clipboard
+  autocmd!
+  " WSL has no X clipboard, so send yanks to Windows directly
+  " shortcut: clip.exe garbles non-ASCII text, switch to win32yank if that matters
+  if has('wsl') && executable('clip.exe')
+    autocmd TextYankPost * if v:event.operator ==# 'y' | call system('clip.exe', join(v:event.regcontents, "\n")) | endif
+  endif
 augroup END
 
 augroup vimrc_misc
