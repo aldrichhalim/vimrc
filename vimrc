@@ -183,7 +183,12 @@ nnoremap <leader>:  :History:<CR>
 " General mappings
 " ----------------------------------------------------------------------------
 nnoremap <silent> <leader><space> :nohlsearch<CR>
-nnoremap <leader>w :write<CR>
+nnoremap <silent> <Esc> <Cmd>nohlsearch<CR>
+
+" Save from any mode
+nnoremap <silent> <C-s> <Cmd>write<CR>
+inoremap <silent> <C-s> <Cmd>write<CR>
+xnoremap <silent> <C-s> <Esc><Cmd>write<CR>
 
 " Window navigation
 nnoremap <C-h> <C-w>h
