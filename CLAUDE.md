@@ -19,3 +19,17 @@ A one-file dotfiles repo for Vim. `vimrc` is the real file; `~/.vimrc` is a syml
 - coc.nvim provides LSP/completion; language servers come from `g:coc_global_extensions`. `<CR>` is owned by coc, so auto-pairs' `<CR>` mapping is disabled (`g:AutoPairsMapCR = 0`) — keep that in mind when changing either.
 - `autoread` plus the `vimrc_autoread` checktime autocmd reload files changed externally (e.g. by AI coding tools).
 - Autocommands live in named `augroup`s with `autocmd!`, so the file can be re-sourced without duplicating them; follow that pattern.
+
+## Agent skills
+
+### Issue tracker
+
+Issues are tracked in GitHub Issues on aldrichhalim/vimrc via the `gh` CLI. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Default labels: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: `GLOSSARY.md` and `docs/adr/` at the repo root. See `docs/agents/domain.md`.
