@@ -70,7 +70,7 @@ Plugins removed from the config are not deleted automatically. Run `:PlugClean` 
 | [vim-airline](https://github.com/vim-airline/vim-airline) | Status line and buffer tabs |
 | [gruvbox](https://github.com/morhetz/gruvbox) | Color scheme (light, high contrast) |
 
-Language servers come preconfigured for TypeScript/JavaScript, Python, C/C++, Go and JSON. Add more to `g:coc_global_extensions` in `vimrc`.
+Language servers come preconfigured for TypeScript/JavaScript, Python, C/C++, Go, JSON and Java (needs JDK 17+ on `PATH`). Add more to `g:coc_global_extensions` in `vimrc`.
 
 ## Key mappings
 
@@ -131,7 +131,7 @@ The leader key is `,`.
 
 ## Defaults worth knowing
 
-- Two-space indentation by default; four spaces for Python; tabs for Go and Makefiles.
+- Two-space indentation by default; four spaces for Python and Java; tabs for Go and Makefiles.
 - Undo history persists across sessions in `~/.vim/undo`.
 - Files reopen at the line you left them.
 - Pressing `Enter` or `o` on a commented line starts a plain line, not another comment.

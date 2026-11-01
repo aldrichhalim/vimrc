@@ -31,6 +31,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 call plug#end()
+" Load sensible now so the settings below override it; its own check fails to see them.
+runtime! plugin/sensible.vim
 
 " ----------------------------------------------------------------------------
 " General
@@ -78,6 +80,12 @@ set softtabstop=2
 set expandtab
 
 " ----------------------------------------------------------------------------
+" Whitespace display
+" ----------------------------------------------------------------------------
+set list
+set listchars=tab:»\ ,leadmultispace:┊\ ,trail:·,nbsp:␣,extends:›,precedes:‹
+
+" ----------------------------------------------------------------------------
 " Folding
 " ----------------------------------------------------------------------------
 set foldmethod=syntax
@@ -115,6 +123,7 @@ let g:coc_global_extensions = [
       \ 'coc-clangd',
       \ 'coc-go',
       \ 'coc-json',
+      \ 'coc-java',
       \ ]
 
 " ----------------------------------------------------------------------------
@@ -184,6 +193,7 @@ nnoremap <leader>:  :History:<CR>
 " ----------------------------------------------------------------------------
 nnoremap <silent> <leader><space> :nohlsearch<CR>
 nnoremap <silent> <Esc> <Cmd>nohlsearch<CR>
+nnoremap <silent> <leader>l <Cmd>set list!<CR>
 
 " Save from any mode
 nnoremap <silent> <C-s> <Cmd>write<CR>
@@ -219,8 +229,8 @@ augroup vimrc_filetype
   autocmd FileType * setlocal formatoptions-=r formatoptions-=o
   " Go (gofmt) and Makefiles require real tabs
   autocmd FileType go,make setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=0
-  " PEP 8
-  autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4
+  " PEP 8 and Java convention
+  autocmd FileType python,java setlocal tabstop=4 shiftwidth=4 softtabstop=4
 augroup END
 
 augroup vimrc_wsl_clipboard
